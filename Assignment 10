@@ -1,0 +1,83 @@
+'''
+Brandon Munroe
+CSCI 161
+FA '21
+Assignment 10
+'''
+
+class Vehicle:
+    def __init__(self,color):
+        self.color = color
+    
+    def get_value(self):
+        return self.color
+
+
+class Car(Vehicle):
+    def __init__(self,color,style,speed):
+        Vehicle.__init__(self,color)
+        self.style = style
+        self.speed = speed
+        
+    
+    def get_value(self):
+        print('I’m a ',self.color,' Car')
+        print('I’m a ',self.color, self.style)
+        print('Now travelling at ',self.speed,' miles per hour')
+        
+
+class Bike(Vehicle):
+    def __init__(self,color,style,speed):
+        Vehicle.__init__(self,color)
+        self.style = style
+        self.speed = speed
+        
+    
+    def get_value(self):
+        print('I’m a ',self.color,' Bike')
+        print('I’m a ',self.color, self.style)
+        print('Now travelling at ',self.speed,' miles per hour')
+
+
+
+
+
+vehicle_Color =  input('Please enter the color of your vehicle: ')
+vehicle_obj = Vehicle(vehicle_Color) #sets up the base Class attribute
+
+#--------------------------------------------
+vehicle_Type = input('Is your vehicle car or bike? ')
+while vehicle_Type.lower() not in {'car','bike'}:
+    print('Invalid option')
+    vehicle_Type = input('Is your vehicle car or bike? ')
+#--------------------------------------------
+    
+vehicle_Brand = input('Please enter the brand of your car: ')
+vehicle_Speed = input('Please tell me at what speed you are driving? ')
+
+
+lower_vehicle_Type = vehicle_Type.lower()
+
+#--------------------------------------------
+
+if lower_vehicle_Type == 'car':
+    car_obj = Car(vehicle_Color,vehicle_Brand,vehicle_Speed) #calls the base class and sub classes
+    car_obj.get_value()
+
+else:
+    car_obj = Bike(vehicle_Color,vehicle_Brand,vehicle_Speed)
+    car_obj.get_value()
+    
+    
+
+    
+
+    
+    
+
+
+
+
+
+
+    
