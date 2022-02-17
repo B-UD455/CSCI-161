@@ -1,0 +1,190 @@
+'''
+Brandon Munroe
+CSCI 161
+FA '21
+Midterm
+'''
+
+
+#---------------------------------------------------------------------------------------------------------------------------------
+
+print('Question number 1')
+'''
+1: Write a program that uses the input command to have the user enter an integer number.  
+    Recast the input string to an integer and a floating point number.  
+    Print the number as a string, as an integer, and as a float.  Use the type()
+    function and the id() function to print out the type and id of each of the items printed.
+'''
+
+
+integer_as_string = input("Please input an integer: ")
+integer_as_integer = int(integer_as_string)
+integer_as_float = float(integer_as_string)
+
+print("The string is", integer_as_string, ",The id is", id(integer_as_string),",The type is", type(integer_as_string))
+print("The integer is",integer_as_integer, ",The id is", id(integer_as_integer),",The type is", type(integer_as_integer))
+print("The float is",integer_as_float, ",The id is", id(integer_as_float),",The type is", type(integer_as_float))
+
+print('')
+#---------------------------------------------------------------------------------------------------------------------------------
+print('Question number 2')
+'''
+2: Write a program that imports the math module.  Prompt the user to enter an integer
+    value, the number of degrees in an angular measure.  Use functions from the math 
+    module to convert the degrees into radians, and to calculate the cosine of the 
+    resulting radians.  Print out the degrees, radians, and the cosine value.
+'''
+
+import math
+
+angular_measure = int(input('Please enter an angular measure from 0 to 360: '))
+degrees_to_radians = math.radians(angular_measure)
+cosine_of_radians = math.cos(degrees_to_radians)
+
+print('The number of degrees is ', angular_measure, 'the radians are', degrees_to_radians,' its cosine is ',cosine_of_radians)
+
+print('')
+
+#---------------------------------------------------------------------------------------------------------------------------------
+print('Question number 3')
+'''
+3: Write a program with a user-defined function called 'clamp', which takes as an input
+   a single integer.  If the input number is negative, have the function return 
+   0 (zero).  If the value is postivie and greater than 255, have the function return
+   255.  If the value is between 0 and 255 inclusive, have the function return the number 
+   unaltered.  Write a main program section that prompts the user to enter a number,
+   recasts it to an integer, and calls the clamp function.  The program should then 
+   print out the value returned by the function call.
+'''
+
+def clamp(value):
+    if value < 0:
+        return 0
+    elif value > 0 and value > 255:
+        return 255
+    else:
+        return value
+
+
+
+chosen_value = int(input('Enter an integer: '))
+print('The clamp value is ',clamp(chosen_value))
+
+print('')
+#---------------------------------------------------------------------------------------------------------------------------------
+print('Question number 4')
+'''
+4: Write a program that creates an empty list, and then has a for loop that asks
+    the user to put in 5 names, adding each name to the list as the program goes
+    (the names are single words).  When this is done, sort the list alphabetically,
+    and print it out.
+'''
+
+name_list = []
+name = 0
+
+for i in range(0,5):
+    name = input('Please enter a name: ')
+    name_list.append(name)
+    
+name_list_sorted = name_list.sort()
+print(name_list)
+print('')
+#---------------------------------------------------------------------------------------------------------------------------------
+print('Question number 5')
+'''
+5: Write a program with a class definition 'Aircraft'.  The constructor should take in
+   arguments for tail_number, latitude, longitude, altitude, heading, and speed.  These
+   should be stored in a dictionary.  The key is the parameter name (e.g. 'tail_number'),
+   and the value will be the argument passed to the constructor (e.g. 'N51123ND').
+   Also have a method definition in the class called
+   'print_plane', which prints out all of these values for a given instantiation of
+   the class.  In the main portion of the program, have an
+   initially-empty list called 'airplanes'.  Have the user enter the arguments listed
+   above, call the constructor, and add the new object to the list.  
+   Do this three times, so that there will
+   be a list with three instantiations of the Aircraft class in it.  Finally, use a
+   'for' loop to iterate over the list, calling the print_plane method from each 
+   object in the list.
+'''
+
+class Aircraft:
+        
+    class __Airplanes:
+        
+        def __init__(self,tail_number, latitude, longitude,altitude,heading,speed):
+            self.tail_number = tail_number
+            self.latitude = latitude
+            self.longitude = longitude
+            self.altitude = altitude
+            self.heading = heading
+            self.speed = speed        
+        
+    def __init__(self,maxSize = 3):
+        self.__dictionary = {}
+    
+    def add_to_dictionary(self,tail_number, latitude, longitude,altitude,heading,speed):
+        self.__dictionary['tail number'] = tail_number
+        self.__dictionary['latitude'] = latitude
+        self.__dictionary['longitude']=longitude
+        self.__dictionary['altitude']=altitude
+        self.__dictionary['heading']=heading
+        self.__dictionary['speed']=speed
+    
+    def print_plane(self):
+        print(self.__dictionary)
+ 
+    
+def main():
+    airplanes = []
+    
+    #first plane details
+    p1 = Aircraft()
+    print('First Plane Details')
+    print('--------------------')
+    p1_name = input('Enter tail_number: ')
+    p1_latitude = float(input('Enter latitude: '))
+    p1_longitude = float(input('Enter longitude: '))
+    p1_altitude = float(input('Enter altitude: '))
+    p1_heading = float(float(input('Enter heading: ')))
+    p1_speed =float(input('Enter speed: '))
+    p1.add_to_dictionary(p1_name,p1_latitude,p1_longitude,p1_altitude,p1_heading,p1_speed)
+    airplanes.append(p1)
+    
+    #second plane details
+    print('')
+    p2 = Aircraft()
+    print('Second Plane Details')
+    print('--------------------')
+    p2_name = input('Enter tail_number: ')
+    p2_latitude = float(input('Enter latitude: '))
+    p2_longitude = float(input('Enter longitude: '))
+    p2_altitude = float(input('Enter altitude: '))
+    p2_heading = float(float(input('Enter heading: ')))
+    p2_speed =float(input('Enter speed: '))
+    p2.add_to_dictionary(p2_name,p2_latitude,p2_longitude,p2_altitude,p2_heading,p2_speed)
+    airplanes.append(p2)
+    
+    #third plane details
+    print('')
+    p3 = Aircraft()
+    print('Third Plane Details')
+    print('--------------------')
+    p3_name = input('Enter tail_number: ')
+    p3_latitude = float(input('Enter latitude: '))
+    p3_longitude = float(input('Enter longitude: '))
+    p3_altitude = float(input('Enter altitude: '))
+    p3_heading = float(float(input('Enter heading: ')))
+    p3_speed =float(input('Enter speed: '))
+    p3.add_to_dictionary(p3_name,p3_latitude,p3_longitude,p3_altitude,p3_heading,p3_speed)
+    airplanes.append(p3)
+    
+    
+    print('')
+    print('List of Planes')
+    for i in airplanes:
+        i.print_plane()
+        
+
+main()
+
