@@ -1,0 +1,72 @@
+'''
+Brandon Munroe
+CSCI 161
+FA '21
+Assignment 13
+'''
+class BSTree:
+   
+   class __TreeNode:
+      
+      def __init__ (self, data, left=None, right=None):
+         self.data = data
+         self.left = left
+         self.right = right
+      
+   def __init__ (self):
+      self.__root = None
+      
+   
+   def isInList (self, itemToFind):
+      location = self.__root
+      while location != None:
+         if itemToFind == location.data:  #found it
+            print('Element found')
+            return True
+         elif itemToFind < location.data: 
+            location = location.left
+         else:   
+            location = location.right
+      
+      print("element not found")
+      return False
+   
+   def insert (self, itemToInsert):
+      if self.__root == None:
+         self.__root = BSTree.__TreeNode(itemToInsert)
+      else:
+         location = self.__root
+         done = False
+         while not done:  #or while True
+            if itemToInsert > location.data: #going to the right subtree
+               if location.right == None: #nothing here right now, so this is where itemToInsert goes
+                  location.right = BSTree.__TreeNode(itemToInsert)
+                  done = True #end the loop   #break if using the infinite loop option in the while statement 
+               else:
+                  location = location.right
+            else: #going to the left subtree     
+               if location.left == None: #nothing here right now, so this is where itemToInsert goes
+                  location.left = BSTree.__TreeNode(itemToInsert)
+                  done = True #end the loop 
+               else:
+                  location = location.left
+        
+   
+   
+num_of_inputs = 0
+tree = BSTree()
+
+while num_of_inputs <= 6:
+   choices = int(input("Choose integer value: "))
+   tree.insert(choices)
+   num_of_inputs += 1
+  
+
+find_Choices = int(input("Choose integer value to find: "))   
+tree.isInList(find_Choices)
+
+tree.insert(34)
+   
+   
+   
+   
