@@ -1,0 +1,46 @@
+'''
+Brandon Munroe
+CSCI 161
+FA '21
+Assignment 11
+'''
+
+def quickSort (theList): #starter function
+   quickSortSelection (theList, 0, len(theList) - 1)
+   
+def quickSortSelection (theList, left, right):
+   if left < right:
+      splitAt = partition (theList, left, right) #all values "left" of splitAt will be less than the value at index splitAt
+      quickSortSelection (theList, left, splitAt - 1)
+
+def partition (theList, left, right):
+   pivotValue = theList [left] #just grab the first item to be the pivot value
+   leftMark = left + 1
+   rightMark = right
+   done = False
+   
+   while not done:
+      while leftMark <= rightMark and theList[leftMark] <= pivotValue:
+         leftMark += 1
+      while theList[rightMark] >= pivotValue and rightMark >= leftMark:
+         rightMark -= 1
+      
+      if rightMark < leftMark: #marks crossed, so nothing to move
+         done = True
+      else:
+         temp = theList[leftMark]
+         theList[leftMark] = theList[rightMark]
+         theList[rightMark] = temp
+   
+   temp = theList[left]
+   theList[left] = theList[rightMark]
+   theList[rightMark] = temp 
+   return rightMark 
+
+def main():
+   values = [22, 65, 11, 35, 27, 90, 12]
+   print (values)
+   quickSort (values)
+   print (values)
+
+main()   
