@@ -1,0 +1,104 @@
+'''
+Brandon Munroe
+CSCI 161
+FA '21
+Assignment 8
+'''
+
+class CartItem:
+    
+    def __init__(self,Name,Description,Price,Quantity):
+        self.name = Name
+        self.description = Description
+        self.price = Price
+        self.quantity = Quantity
+
+class ShoppingCart:
+    
+    def __init__(self,customer_name,current_date): #takes the parameters from the below "_object"
+        self.customer_name = customer_name
+        self.current_date = current_date 
+        self.cart_items = [] #creates the class list internally
+        self.number_of_items = 0 #creates the number of items bought internally
+        
+    
+    def add_items(self,ItemToPurchase): #feeds from the "print_Menu" function
+        self.cart_items.append(ItemToPurchase) #adds the "item" instances to the self.cart_items list
+        self.number_of_items += ItemToPurchase.quantity #increases the number of items using "item" instances specificed to the quantity in the instance
+              
+    def print_descriptions(self):
+        print('OUTPUT ITEMS DESCRIPTIONS')
+        print(self.customer_name,'Shopping Cart',self.current_date)
+        print('Item Descriptions')
+        for descriptions in self.cart_items:
+            print(descriptions.name,':',descriptions.description) #A for loop for each item in the self.cart_items, calling for the name and description of each item using the "Item" class
+    
+    def get_cost_of_cart(self):
+        total_cost  = 0
+        for i in self.cart_items:
+            item_cost = i.price * i.quantity
+            total_cost += item_cost
+        print('Total: ','${:.2f}'.format(total_cost))
+    
+    def print_total(self):
+        if self.number_of_items == 0:
+            print('SHOPPING CART IS EMPTY')
+        else:
+            print('OUTPUT SHOPPING CART')
+            print(self.customer_name,' Shopping Cart - ',self.current_date)
+            print('Number of Items:',self.number_of_items)
+            
+            for item in self.cart_items:
+                print(item.quantity,' - ',item.name,item.description,'for','${:.2f}'.format(item.price),'=','${:.2f}'.format(item.price * item.quantity)) #using the instances from the Item Class
+           
+   
+def main():
+    
+    def print_Menu():
+        
+        menu_Choice = 0
+        
+        while menu_Choice != 'q':
+            print()
+            print('MENU')
+            print('a - Add item to cart.')
+            print('i - Output items descriptions')
+            print('o - Output shopping cart')
+            print('q - Quit.')
+            
+            menu_Choice = input('Choose the option: ')
+            print()
+            
+            if menu_Choice == 'a':
+                item_Name = input('Enter the item name: ')
+                item_Description = input('Enter the item description:')
+                item_Price = float(input('Enter the item price: '))
+                item_Quantity = int(input('Enter the item quantity: '))
+                item = CartItem(item_Name,item_Description,item_Price,item_Quantity) #the "item" instance is created to be used as "ItemToPurchase"
+                _object.add_items(item) #this is the ShoppingCart instance "_object" linked to the "add_items" functions using "item" as "ItemToPurchase"
+                
+            elif menu_Choice == 'i':
+                _object.print_descriptions() #calls the '_object' instances to call the print_descriptions function under ShoppingCart class
+                
+            elif menu_Choice == 'o':
+                _object.print_total()
+                _object.get_cost_of_cart()
+           
+            elif menu_Choice != 'q':
+                print('Invalid option')
+                
+        print('Goodbye')  
+        
+    cust_name = str(input('Enter the customers name: '))
+    todays_Date = str(input('Enter todays date: '))
+    print()
+    
+    print('Customer name: ',cust_name)
+    print('Todays date : ',todays_Date)
+    
+    _object = ShoppingCart(cust_name,todays_Date) #creates the shopping class object to connect to "ShoppingCart" class with parameters of customer name and todays date
+    
+    print_Menu()
+      
+   
+main()
