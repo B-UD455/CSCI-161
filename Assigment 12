@@ -1,0 +1,46 @@
+'''
+Brandon Munroe
+CSCI 161
+FA '21
+Assignment 12
+'''
+#-----------------------------------------------------------------------------------------------
+
+def list_add(item_to_find):
+    input_List.append(item_to_find)
+
+input_List = []
+
+option = "y"
+
+chosen_Value = int(input("Enter an integer value for your list: "))
+list_add(chosen_Value)
+
+while option == "y":
+    option = str(input("Would you like to add more values? (“y” or “n”): "))
+    if option == "y":
+        chosen_Value = int(input("Enter an integer value for your list: "))
+        list_add(chosen_Value)
+        
+input_List.sort()
+    
+print("Linked List: ",input_List)
+
+#-----------------------------------------------------------------------------------------------
+
+def list_search(item_to_find):
+    for integer in input_List:
+        if chosen_Value == integer:
+            print('Element found')
+        
+search_option = "y"
+
+while search_option == "y":
+    
+    search_Value = int(input("Enter an integer value to search for in the list: "))
+    
+    list_search(search_Value)
+    
+    search_option = str(input("Would you like to search for another value? (“y” or “n”): "))
+    
+   
