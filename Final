@@ -1,0 +1,174 @@
+'''
+Brandon Munroe
+CSCI 161
+FA '21
+Final programming Exam
+'''
+
+'''
+Part 1:  Write a python program which contains a user-defined function called 'input_data'.
+This function should have a try/except block in it that will attempt to input a list of
+three players' last name and their associated number.  For example, 'Jones', 44 would
+be one such pair of data.  These name/number pairs should be
+added to the list, with the name first, and the number following.  
+The list should be returned by the function.  If there is an error inputting
+the names, the except block should set the player names to 'none', 0 for all three cases.
+'''
+print('Part One:')
+
+player_list = []
+
+def add_to_dictionary(players_name,players_number):
+        player_list.append([players_name, players_number])      
+
+
+def input_data(): 
+        try:
+                add_to_dictionary('Munroe',45)
+                add_to_dictionary('Kyle',23)
+                add_to_dictionary('Murphy',65) 
+                             
+                
+        except NameError:
+                player_list.append(['None', 0])
+                player_list.append(['None', 0])
+                player_list.append(['None', 0])
+                        
+        except TypeError:
+                player_list.append(['None', 0])
+                player_list.append(['None', 0])
+                player_list.append(['None', 0])
+
+            
+            
+        
+    
+        print( player_list) 
+
+input_data()
+
+print()
+print('Part Two:')
+
+'''
+Part 2:  Take the function from Part 1 and place it into a loadable module called module1.
+Write a program that imports module1 and calls the function, then prints the string returned
+by the module.
+'''
+
+import module1
+
+print(module1.input_data())
+
+
+print()
+print('Part Three:')
+
+'''
+Part 3:  Write a program that will open a text file called textfile1.txt for reading, and
+reads the contents.  Determine how many lines are in the textfile, and print out the
+number as such: "The file contains X lines.", where X is the number of lines in the file.
+Then have the program print the contents of the file to a second text file called textfile2.txt,
+which your program will create when it runs.
+'''
+
+
+file = open("textfile1.txt", "r") #opens textfile1 
+file2 = open("textfile2.txt", "w") #creates a new file to write
+
+number_of_lines = 0 
+
+for line in file:
+        line = line.strip()
+        number_of_lines += 1
+        file2.write(str(line + '\n'))
+
+file.close()
+file2.close()   
+print('The file contains ',number_of_lines,' lines.')
+
+
+
+print()
+print('Part Four:')
+
+'''
+Part 4:  Write a program that contains a class called Car.  The Car class should have a 
+constructor which defines a Car object with the following attributes: make, model, and year.
+Define a second class, which is derived from Car, called Entry, but adds attributes: driver and 
+number.  The derived class should also have a printEntry method which prints out the
+make, model, year, driver, and number of an Entry object.
+'''
+
+class Car:
+        def __init__(self,make,model,year):
+                self.make = make
+                self.model = model
+                self.year = year
+            
+        def printEntry(self):
+                return self.make,self.model,self.year
+
+
+class Entry(Car):    
+        def __init__(self,make,model,year,driver,number):
+                Car.__init__(self,make,model,year)
+                self.driver = driver
+                self.number = number
+        
+    
+        def printEntry(self):
+                print('The vehicle is a', self.year, self.make,'-',self.model,'. The driver name is', self.driver, 'with a car number of',self.number)
+        
+vehicle_Make =  input('Please enter the make of your vehicle: ')
+vehicle_Model =  input('Please enter the model of your vehicle: ')
+vehicle_Year =  input('Please enter the year of your vehicle: ')
+vehicle_Driver =  input('Please enter the driver of your vehicle: ')
+vehicle_Number =  input('Please enter the number of your vehicle: ')
+
+vehicle_obj = Car(vehicle_Make,vehicle_Model,vehicle_Year) #sets up the base Class attribute
+car_obj = Entry(vehicle_Make,vehicle_Model,vehicle_Year,vehicle_Driver,vehicle_Number) #calls the base class and sub classes
+car_obj.printEntry()
+        
+ 
+ 
+print()
+print('Part Five:')        
+'''
+Part 5:  Write a program that will take in a string, and then compute all possible combinations
+of the letters in the string.  For each of these scramblings, search for that particular 'word'
+in a dictionary file called dictionary.txt.  If a match is found, print "Found: <word>" where
+<word> is the scrambling.  For instance, if the input string is 'tac', and the word 'cat'
+exists in dictionary.txt, the program should print out "Found: cat".  The dictionary.txt file
+will be in the same directory as the program is run from, and will only contain about a
+dozen lines, each with a single word.
+'''  
+
+scramble_Word = str(input('Type in a random assortment of letters: ')) #used 'opne' to find 'nope' in dictionary
+
+
+result = []
+ 
+def scramble(info, a, length):
+        if a == length:
+                result.append(''.join(info) )
+        else:
+                for b in range(a, length):
+                        info[a], info[b] = info[b], info[a]
+                        scramble(info, a + 1, length)
+                        info[a], info[b] = info[b], info[a] 
+
+scramble(list(scramble_Word), 0, len(scramble_Word))
+
+print("The combination list is: ", str(result))
+
+file = open("dictionary.txt", "r")
+
+for item in file:
+        item = item.strip() 
+    
+        for item2 in result:
+                if item2 == item:
+                        print('Found:',item)
+ 
+
